@@ -1,0 +1,227 @@
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Htraining - Conectando Treinadores e Alunos</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    </head>
+    <body>
+
+    <section id="landingPage" class="landing">
+        <header class="landing-header">
+            <div class="logo">H <span style="font-weight: 300;">training</span></div>
+            <nav>
+                <a href="#sobre">Sobre</a>
+                <a href="#funcionalidades">Funcionalidades</a>
+                <a href="#planos">Planos</a>
+                <button class="btn-entrar" onclick="abrirLogin()">Entrar</button>
+            </nav>
+        </header>
+
+        <div class="hero container">
+            <div class="hero-text">
+                <h1>Treine <span class="gradient-text">conectado.</span></h1>
+                <p>A ponte perfeita entre a gestão do <strong>Personal Trainer</strong> e a evolução real do <strong>Aluno</strong>. Tudo em um só ecossistema.</p>
+                <div class="hero-btns">
+                    <button class="btn-primary" onclick="abrirLogin()">Começar agora</button>
+                    <button class="btn-outline" onclick="window.location.href='#sobre'">Ver como funciona</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000" alt="Treino e Conexão">
+            </div>
+        </div>
+
+        <div id="sobre" class="container features-grid">
+            <div class="feature-main glass">
+                <div class="feature-content">
+                    <span class="badge">Para o Aluno</span>
+                    <h2>Sua evolução no bolso</h2>
+                    <p>Agende treinos, visualize sua evolução física e receba orientações do seu personal de forma instantânea.</p>
+                    <div class="feature-list">
+                        <p>✓ Agenda simplificada</p>
+                        <p>✓ Gráficos de peso e medidas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-side glass">
+                <span class="badge" style="color: #0ea5e9;">Para o Personal</span>
+                <h2>Gestão sem falhas</h2>
+                <p>Controle sua agenda de alunos, registre evoluções e profissionalize sua consultoria física.</p>
+            </div>
+        </div>
+
+        <div id="funcionalidades" class="container icon-features">
+            <div class="icon-card glass">
+                <div class="icon-circle">📅</div>
+                <h3>Agenda Mútua</h3>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 5px;">Aluno agenda, Personal gerencia.</p>
+            </div>
+            <div class="icon-card glass">
+                <div class="icon-circle">📈</div>
+                <h3>Evolução Real</h3>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 5px;">Acompanhamento de metas e resultados.</p>
+            </div>
+            <div class="icon-card glass">
+                <div class="icon-circle">💊</div>
+                <h3>Dicas e Suporte</h3>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 5px;">Suplementação e orientações integradas.</p>
+            </div>
+            <div class="icon-card glass">
+                <div class="icon-circle">💰</div>
+                <h3>Financeiro</h3>
+                <p style="font-size: 12px; color: #94a3b8; margin-top: 5px;">Controle de mensalidades e serviços.</p>
+            </div>
+        </div>
+
+        <div id="planos" class="container pricing-section">
+            <div class="pricing-info">
+                <h2>O plano ideal para o seu objetivo</h2>
+                <p>Seja você um aluno focado ou um treinador em busca de escala.</p>
+                <button class="btn-primary" style="margin-top: 20px;">Ver todos os detalhes</button>
+            </div>
+            <div class="pricing-cards">
+                <div class="price-card glass">
+                    <h3>Plano Aluno</h3>
+                    <div class="price">Grátis</div>
+                    <ul>
+                        <li>✓ Agendar seus treinos</li>
+                        <li>✓ Ver sua evolução física</li>
+                        <li>✓ Receber notificações</li>
+                    </ul>
+                </div>
+                <div class="price-card glass highlighted">
+                    <span class="badge-pro">Consultoria</span>
+                    <h3>Plano Personal</h3>
+                    <div class="price">R$ 89,90<span>/mês</span></div>
+                    <ul>
+                        <li>✓ Gerenciar alunos ilimitados</li>
+                        <li>✓ Painel administrativo total</li>
+                        <li>✓ Relatórios avançados</li>
+                        <li>✓ Gestão de pagamentos</li>
+                    </ul>
+                    <button class="btn-primary" style="width: 100%;">Assinar como Personal</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="loginPage" class="centered hidden">
+        <div class="card-login glass">
+            <h2>Htraining</h2>
+            <p>Acesse seu painel</p>
+            <input type="text" id="username" placeholder="Usuário">
+            <input type="password" id="password" placeholder="Senha">
+            <button class="btn-primary" style="width: 100%; margin-top: 10px;" onclick="login()">Entrar</button>
+            <p id="loginError" style="color: #ff4444; font-size: 12px; margin-top: 10px;"></p>
+        </div>
+    </div>
+
+    <div id="mainSystem" class="hidden">
+        <header class="main-header-system">
+            <div class="logo">H <span style="font-weight: 300;">training</span></div>
+            <button class="btn-logout" onclick="logout()">Sair</button>
+        </header>
+
+        <nav class="system-nav">
+            <button class="nav-link" id="nav-agendamento" onclick="showTab('agendamento')">📅 Agenda</button>
+            <button class="nav-link" id="nav-meus-treinos" onclick="showTab('meus-treinos')">📋 Meus Treinos</button>
+            <button class="nav-link" id="nav-evolucao" onclick="showTab('evolucao')">📈 Evolução</button>
+            <button class="nav-link" id="nav-servicos" onclick="showTab('servicos')">💰 Serviços</button>
+            <button class="nav-link hidden" id="nav-admin-alunos" onclick="showTab('alunos')">👥 Alunos</button>
+            <button class="nav-link hidden" id="nav-admin-painel" onclick="showTab('admin')" style="background: #0ea5e9; color: white;">🔐 Ver Treinos</button>
+        </nav>
+
+        <main class="container system-container">
+            <section id="agendamento" class="tab">
+                <div class="system-card glass">
+                    <h2>Marcar Treino</h2>
+                    <div class="grid-form">
+                        <input type="text" id="nomeCompleto" placeholder="Confirme seu Nome">
+                        <select id="tipoTreino" class="input-style">
+                            <option value="">Tipo de Treino</option>
+                            <option value="Academia">Academia</option>
+                            <option value="Corrida">Corrida</option>
+                        </select>
+                    </div>
+                    <label style="display:block; margin: 15px 0 5px; font-size: 14px; color: #94a3b8;">Escolha a Data:</label>
+                    <input type="date" id="dataSelecionada" onchange="mostrarHorarios()" class="input-style">
+                    <div id="horariosContainer" class="grid-horarios"></div>
+                </div>
+            </section>
+
+            <section id="meus-treinos" class="tab hidden">
+                <div class="system-card glass">
+                    <h2>Meus Agendamentos</h2>
+                    <ul id="listaMeusTreinos" class="data-list"></ul>
+                </div>
+            </section>
+
+            <section id="evolucao" class="tab hidden">
+                <div class="system-card glass">
+                    <h2>Acompanhamento de Resultados</h2>
+                    
+                    <div id="visaoPersonalEvolucao" class="hidden" style="margin-bottom: 20px; border-bottom: 1px solid #334155; padding-bottom: 20px;">
+                        <p style="color: #0ea5e9; font-weight: bold; margin-bottom: 10px;">Avaliação do Personal</p>
+                        <input type="text" id="evolucaoAluno" placeholder="Nome do Aluno">
+                        <input type="number" id="pesoAtual" placeholder="Peso Atual (kg)" class="input-style">
+                        <textarea id="observacoes" placeholder="Feedback..." class="input-style" style="height: 60px;"></textarea>
+                        <button class="btn-primary" onclick="registrarEvolucao('personal')" style="width: 100%; margin-top: 10px;">Registrar Feedback</button>
+                    </div>
+
+                    <div id="visaoAlunoEvolucao" class="hidden">
+                        <p style="color: #38d39f; font-weight: bold; margin-bottom: 10px;">Novo Registro</p>
+                        
+                        <select id="tipoEvolucao" onchange="alternarCamposEvolucao()" class="input-style" style="margin-bottom: 10px;">
+                            <option value="musculacao">Musculação / Peso</option>
+                            <option value="corrida">Corrida / Performance</option>
+                        </select>
+
+                        <div id="camposMusculacao">
+                            <div class="grid-form">
+                                <input type="number" id="pesoInicial/Pace inicial" placeholder="Peso inicial(kg)/ Pace inicial(minutos)">
+                                <input type="number" id="PesoAtual/Pace atual" placeholder="Peso atual(kg) Pace atual(minutos)">
+                                <input type="number" id="Musculação/Esforço" placeholder="Ganhou musculo(sim ou não)/ Esforço de 1 a 10">
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="registrarEvolucao('aluno')" style="width: 100%; margin-top: 15px; background: #38d39f;">Salvar Evolução</button>
+                    </div>
+
+                    <h3 style="margin-top: 25px;">Histórico</h3>
+                    <ul id="listaEvolucoes" class="data-list"></ul>
+                </div>
+            </section>
+
+            <section id="alunos" class="tab hidden">
+                <div class="system-card glass">
+                    <h2>Gerenciar Alunos</h2>
+                    <div class="grid-form">
+                        <input type="text" id="alunoNome" placeholder="Nome">
+                        <input type="text" id="alunoObjetivo" placeholder="Objetivo">
+                    </div>
+                    <button class="btn-primary" onclick="cadastrarAluno()" style="width: 100%; margin-top: 15px;">Cadastrar</button>
+                    <ul id="listaAlunos" class="data-list"></ul>
+                </div>
+            </section>
+
+            <section id="servicos" class="tab hidden">
+                <div class="system-card glass">
+                    <h2>Serviços</h2>
+                    <ul id="listaServicos" class="data-list"></ul>
+                </div>
+            </section>
+
+            <section id="admin" class="tab hidden">
+                <div class="system-card glass">
+                    <h2>Agenda Geral</h2>
+                    <ul id="listaTreinosAdmin" class="data-list"></ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    </body>
+    </html>

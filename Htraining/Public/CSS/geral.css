@@ -1,0 +1,197 @@
+/* CONFIGURAÇÃO INTERNA E FRAMEWORK BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.glass {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+
+.btn-primary {
+    background: #0ea5e9;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #0284c7;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+/* Efeito Hover no botão outline */
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #f8fafc;
+}
+
+.hidden { display: none !important; }
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card-login {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    text-align: center;
+}
+
+.card-login h2 { color: #0ea5e9; margin-bottom: 10px; }
+.card-login p { color: #94a3b8; margin-bottom: 20px; }
+
+.input-style, input[type="text"], input[type="password"], input[type="number"], input[type="date"], select, textarea {
+    width: 100%;
+    background: #1e293b;
+    border: 1px solid #334155;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease; /* Transição suave para os inputs */
+}
+
+/* NOVO: Mudança de cor ao passar o mouse por cima do SELECT (Caixa de Seleção) */
+select:hover {
+    border-color: #0ea5e9;
+    background-color: #1e293b;
+    cursor: pointer;
+}
+
+/* SISTEMA INTERNO */
+.main-header-system {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+}
+
+.btn-logout {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: #dc2626;
+}
+
+.system-nav {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 15px;
+    background: #111827;
+}
+
+.nav-link {
+    background: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-link.active, .nav-link:hover {
+    background: #0ea5e9;
+    color: white;
+}
+
+.system-container { margin-top: 30px; }
+.system-card { padding: 30px; }
+.grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+.grid-horarios { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 15px; }
+
+/* BASE DO BOTÃO DE HORÁRIO */
+.btn-horario {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+/* ALTERAÇÕES DE DISPONIBILIDADE */
+
+/* Quando o horário estiver DISPONÍVEL (Verde) */
+.btn-horario.livre {
+    background-color: #16a34a; 
+    border-color: #22c55e;
+    color: #ffffff;
+}
+
+.btn-horario.livre:hover { 
+    background-color: #15803d; 
+    border-color: #16a34a;
+    transform: scale(1.03);
+}
+
+/* Quando o horário estiver INDISPONÍVEL / OCUPADO (Vermelho) */
+.btn-horario.ocupado {
+    background-color: #dc2626;
+    border-color: #ef4444;
+    color: #ffffff;
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+/* Desativa o efeito hover original para horários ocupados */
+.btn-horario.ocupado:hover {
+    background-color: #dc2626;
+    border-color: #ef4444;
+    color: #ffffff;
+    font-weight: normal;
+}
+
+.data-list { list-style: none; margin-top: 15px; }
+.data-list li { background: #1e293b; padding: 12px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #0ea5e9; }
+.empty-msg { color: #94a3b8; border: none !important; background: transparent !important; }

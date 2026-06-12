@@ -1,0 +1,133 @@
+<%- include('../Views/header') %>
+
+<div id="mainSystem">
+    <header class="main-header-system">
+        <div class="logo">H <span style="font-weight: 300;">training</span></div>
+        <button class="btn-logout" onclick="logout()">Sair</button>
+    </header>
+
+    <nav class="system-nav">
+        <button class="nav-link" id="nav-agendamento" onclick="showTab('agendamento')">📅 Agenda</button>
+        <button class="nav-link" id="nav-meus-treinos" onclick="showTab('meus-treinos')">📋 Meus Treinos</button>
+        <button class="nav-link" id="nav-evolucao" onclick="showTab('evolucao')">📈 Evolução</button>
+        <button class="nav-link" id="nav-servicos" onclick="showTab('servicos')">💰 Serviços</button>
+        <button class="nav-link hidden" id="nav-admin-alunos" onclick="showTab('alunos')">👥 Alunos</button>
+        <button class="nav-link hidden" id="nav-admin-painel" onclick="showTab('admin')" style="background: #0ea5e9; color: white;">🔐 Ver Treinos</button>
+    </nav>
+
+    <main class="container system-container">
+        <section id="agendamento" class="tab">
+            <div class="system-card glass">
+                <h2>Marcar Treino</h2>
+                <div class="grid-form">
+                    <input type="text" id="nomeCompleto" placeholder="Confirme seu Nome">
+                    <select id="tipoTreino" class="input-style">
+                        <option value="">Tipo de Treino</option>
+                        <option value="Academia">Academia</option>
+                        <option value="Corrida">Corrida</option>
+                    </select>
+                </div>
+                <label style="display:block; margin: 15px 0 5px; font-size: 14px; color: #94a3b8;">Escolha a Data:</label>
+                <input type="date" id="dataSelecionada" onchange="mostrarHorarios()" class="input-style">
+                <div id="horariosContainer" class="grid-horarios"></div>
+            </div>
+        </section>
+
+        <section id="meus-treinos" class="tab hidden">
+            <div class="system-card glass">
+                <h2>Meus Agendamentos</h2>
+                <ul id="listaMeusTreinos" class="data-list"></ul>
+            </div>
+        </section>
+
+        <section id="evolucao" class="tab hidden">
+            <div class="system-card glass">
+                <h2>Acompanhamento de Resultados</h2>
+                
+                <div id="visaoPersonalEvolucao" class="hidden" style="margin-bottom: 20px; border-bottom: 1px solid #334155; padding-bottom: 20px;">
+                    <p style="color: #0ea5e9; font-weight: bold; margin-bottom: 10px;">Avaliação do Personal</p>
+                    <input type="text" id="evolucaoAluno" placeholder="Nome do Aluno">
+                    <input type="number" id="pesoAtual" placeholder="Peso Atual (kg)" class="input-style">
+                    <textarea id="observacoes" placeholder="Feedback..." class="input-style" style="height: 60px;"></textarea>
+                    <button class="btn-primary" onclick="registrarEvolucao('personal')" style="width: 100%; margin-top: 10px;">Registrar Feedback</button>
+                </div>
+
+                <div id="visaoAlunoEvolucao" class="hidden">
+                    <p style="color: #38d39f; font-weight: bold; margin-bottom: 10px;">Novo Registro</p>
+                    
+                    <select id="tipoEvolucao" onchange="alternarCamposEvolucao()" class="input-style" style="margin-bottom: 10px;">
+                        <option value="musculacao">Musculação / Peso</option>
+                        <option value="corrida">Corrida / Performance</option>
+                    </select>
+
+                    <div id="camposMusculacao">
+                        <div class="grid-form">
+                            <input type="number" id="pesoInicial" placeholder="Peso inicial(kg)">
+                            <input type="number" id="pesoAtualAluno" placeholder="Peso atual(kg)">
+                            <input type="text" id="ganhouMusculo" placeholder="Ganhou músculo (sim ou não)">
+                        </div>
+                    </div>
+
+                    <div id="camposCorrida" class="hidden">
+                        <div class="grid-form">
+                            <input type="number" id="paceInicial" placeholder="Pace inicial (minutos)">
+                            <input type="number" id="paceAtual" placeholder="Pace atual (minutos)">
+                            <input type="number" id="esforçoCorrida" placeholder="Esforço de 1 a 10">
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="registrarEvolucao('aluno')" style="width: 100%; margin-top: 15px; background: #38d39f;">Salvar Evolução</button>
+                </div>
+
+                <h3 style="margin-top: 25px;">Histórico</h3>
+                <ul id="listaEvolucoes" class="data-list"></ul>
+            </div>
+        </section>
+
+        <section id="alunos" class="tab hidden">
+            <div class="system-card glass">
+                <h2>Gerenciar Alunos</h2>
+                <div class="grid-form">
+                    <input type="text" id="alunoNome" placeholder="Nome">
+                    <input type="text" id="alunoObjetivo" placeholder="Objetivo">
+                    <input type="number" id="alunoIdade" placeholder="Idade">
+                </div>
+                <button class="btn-primary" onclick="cadastrarAluno()" style="width: 100%; margin-top: 15px;">Cadastrar</button>
+                <ul id="listaAlunos" class="data-list"></ul>
+            </div>
+        </section>
+
+        <section id="servicos" class="tab hidden">
+            <div class="system-card glass">
+                <h2>Serviços</h2>
+                <div id="cadastroServicoAdmin" class="hidden" style="margin-bottom: 20px;">
+                    <div class="grid-form">
+                        <input type="text" id="nomeServico" placeholder="Nome do Serviço">
+                        <input type="number" id="valorServico" placeholder="Valor (R$)">
+                    </div>
+                    <button class="btn-primary" onclick="cadastrarServico()" style="width: 100%; margin-top: 10px;">Adicionar Serviço</button>
+                </div>
+                <ul id="listaServicos" class="data-list"></ul>
+            </div>
+        </section>
+
+        <section id="admin" class="tab hidden">
+            <div class="system-card glass">
+                <h2>Agenda Geral</h2>
+                <ul id="listaTreinosAdmin" class="data-list"></ul>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const logado = localStorage.getItem("usuarioLogado");
+        if (logado) {
+            iniciarSistema(logado);
+        } else {
+            window.location.href = '/login';
+        }
+    });
+</script>
+
+<%- include('../Views/footer') %>

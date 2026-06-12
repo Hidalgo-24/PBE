@@ -1,0 +1,8 @@
+<%- include('../Views/header') %>
+
+<script>
+    // Redireciona o usuário dependendo se ele já estiver logado ou não
+    window.location.href = localStorage.getItem("usuarioLogado") ? "/dashboard" : "/landing";
+</script>
+
+<%- include('../Views/footer') %>
